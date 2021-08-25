@@ -1,37 +1,35 @@
-## Welcome to GitHub Pages
+# ---------------------------------------------------------------------------- #
+# Title: Assignment 07
+# Description: Working with pickling,
+# saving to structured error handling.
+# ChangeLog (Who,When,What):
+# Morgan Farmer, 8/23/21 , Pickling & structured error handling
+# <Your Name>,<Date>,Modified code to complete assignment 7
+# Dev: Morgan Farmer, 08/18/21
+# ---------------------------------------------------------------------------- #
+import pickle
+#import a list object
+lstData = ['aaa','bbb']
 
-You can use the [editor on GitHub](https://github.com/morganfarmer/ITFdn-110A-mod7/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+objFile = open('seven','ab')
+pickle.dump(lstData,objFile)
+objFile.close()
+#write to binary file
+#ask user to input file and read it
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+# Error Handling
+try:
+    new_file_name = input('What do you want to name the file:')
+    if new_file_name.isnumeric():
+        raise Exception('Do not use numbers!')
+    objectFile = open(new_file_name,'rb')
+except Exception as e:
+    print('There was an error!')
+    print(e, e.__doc__, type(e), sep='\n')
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/morganfarmer/ITFdn-110A-mod7/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+# Pickling
+#objectFile = open(input(new_file_name))
+objFileData = pickle.load(objectFile)
+objectFile.close()
+print(objFileData)
